@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use App\Command\GenerateUsersCommand;
+
+try {
+    //$db = new PDO('mysql:host=localhost; dbname=userSeederCommand', 'root', 'root');
+    $db = "";
+}
+catch(exception $e) {
+    die('Erreur '.$e->getMessage());
+}
+
+$faker = Faker\Factory::create();
+
+$application = new Application();
+
+$application->add(new GenerateUsersCommand($db, $faker));
+
+$application->run();
