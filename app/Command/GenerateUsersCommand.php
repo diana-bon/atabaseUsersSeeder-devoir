@@ -7,6 +7,7 @@ namespace App\Command;
     use Symfony\Component\Console\Output\OutputInterface;
     use Symfony\Component\Console\Input\InputArgument;
     use Symfony\Component\Console\Input\InputOption;
+    use Symfony\Component\Console\Helper\ProgressBar;
 
 class GenerateUsersCommand extends Command
 {
@@ -32,9 +33,13 @@ class GenerateUsersCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $progressBar = new ProgressBar($output, $input->getOption('count'));
+        $progressBar->start();
         //
         for ($i = 0; $i < $input->getOption('count'); $i++) {
             $output->writeln($this->faker->firstName);
+            $progressBar->advance();
         }
+        $progressBar->finish();
     }
 }
