@@ -7,8 +7,8 @@ use Symfony\Component\Console\Application;
 use App\Command\GenerateUsersCommand;
 
 try {
-    //$db = new PDO('mysql:host=localhost; dbname=userSeederCommand', 'root', 'root');
-    $db = "";
+    $db = new PDO('mysql:host=127.0.0.1; dbname=userSeederCommand', 'root', 'root');
+    //$db = "";
 }
 catch(exception $e) {
     die('Erreur '.$e->getMessage());
